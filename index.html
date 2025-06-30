@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamer Tag</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: 'Orbitron', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        .gamer-card {
+            width: 400px;
+            height: 280px;
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            border: 2px solid #00ffff;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 0 30px rgba(0, 255, 255, 0.3),
+                0 0 60px rgba(0, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            animation: cardGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes cardGlow {
+            0% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), 0 0 60px rgba(0, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+            100% { box-shadow: 0 0 40px rgba(255, 0, 255, 0.4), 0 0 80px rgba(255, 0, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+        }
+
+        .header {
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            color: #000;
+            padding: 12px 20px;
+            font-size: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .content-area {
+            display: flex;
+            height: calc(100% - 48px);
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .info-section {
+            flex: 1;
+            color: #00ffff;
+            font-size: 13px;
+            line-height: 2;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+        }
+
+        .info-line {
+            margin-bottom: 8px;
+            padding: 4px 8px;
+            background: rgba(0, 255, 255, 0.1);
+            border-left: 3px solid #ff00ff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .info-line:hover {
+            background: rgba(255, 0, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .label {
+            color: #ff00ff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 10px;
+        }
+
+        .avatar-section {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            animation: avatarPulse 2s ease-in-out infinite alternate;
+            padding: 4px;
+        }
+
+        @keyframes avatarPulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        .gamer-photo {
+            width: 100%;
+            height: 100%;
+            background:
+                url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhOyrGLbaH6KqFFlB5w4JxwfZ2PJ8PDNHGrg&s');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .gamer-photo::before {
+            content: '🎮 GAMER';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            font-size: 16px;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        .gamer-photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
+            mix-blend-mode: overlay;
+        }
+
+        .gamer-photo::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .status-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(90deg, rgba(0, 255, 255, 0.8), rgba(255, 0, 255, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: 900;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .circuit-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 20% 80%, #00ffff 2px, transparent 2px),
+                radial-gradient(circle at 80% 20%, #ff00ff 2px, transparent 2px),
+                radial-gradient(circle at 40% 40%, #00ffff 1px, transparent 1px);
+            background-size: 50px 50px, 60px 60px, 30px 30px;
+            animation: circuitMove 20s linear infinite;
+        }
+
+        @keyframes circuitMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .online-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 12px;
+            height: 12px;
+            background: #00ff00;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ff00;
+            animation: onlinePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes onlinePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <div class="gamer-card">
+        <div class="circuit-pattern"></div>
+        <div class="online-indicator"></div>
+        
+        <div class="header">Gamer Tag</div>
+        
+        <div class="content-area">
+            <div class="info-section">
+                <div class="info-line">
+                    <div class="label">Handle</div>
+                    <div>zzVizzz</div>
+                </div>
+                <div class="info-line">
+                    <div class="label">Location</div>
+                    <div>Tokyo, Japan</div>
+                </div>
+                <div class="info-line">
+                    <div class="label">Ranking</div>
+                    <div>Legendary</div>
+                </div>
+                <div class="info-line">
+                    <div class="label">Main Games</div>
+                    <div>COD</div>
+                </div>
+            </div>
+            
+            <div class="avatar-section">
+                <div class="gamer-photo"></div>
+            </div>
+        </div>
+        
+        <div class="status-bar">All units GO!!!</div>
+    </div>
+
+    <script>
+        // Create random stars
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        createStars();
+    </script>
+</body>
+</html>
